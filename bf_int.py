@@ -25,26 +25,26 @@ while cptr < len(program):
 	if skip == False:
 		if ch == '+':
 			data[dptr] += 1
-	        if ch == '-':
+	        elif ch == '-':
 			data[dptr] -= 1
-		if ch == '>':
+		elif ch == '>':
 			dptr += 1
                 	if len(data) <= dptr:	#extend data list if needed
 				data.append(0)
-		if ch == '<':
+		elif ch == '<':
 			dptr -= 1
-		if ch == '.':
+		elif ch == '.':
 			sys.stdout.write(chr(data[dptr]))
-		if ch == ',':
+		elif ch == ',':
 			data[dptr] = ord(sys.stdin.read(1))
-		if ch == '[':
+		elif ch == '[':
 			#if the current data value is not 0, remember the location
 			#otherwise skip this block
 			if data[dptr]:
 				stack.append(cptr)
 			else:
 				skip = True			
-		if ch == ']':
+		elif ch == ']':
 			#if the current data value is not 0, go back to the matching opening bracket
 			#otherwise remove the bracket pair from the stack and continue
 			if data[dptr]:
