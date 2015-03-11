@@ -6,6 +6,10 @@
 
 import sys
 
+class InputError(Exception):
+	def __init__(self, value):
+		self.value = value
+
 #read file into string
 infile = open(sys.argv[1], 'r')
 program = infile.read()
@@ -32,7 +36,13 @@ while cptr < len(program):
                 	if len(data) <= dptr:	#extend data list if needed
 				data.append(0)
 		elif ch == '<':
-			dptr -= 1
+			try:
+				dptr -= 1
+				if dptr < 0:
+					raise ValueError('Attemped to access data array at negative index', cptr + 1, ch)
+			except ValueError as e:
+				print 'Error occurred: %s at character %d (%s)' % (e.args)
+				quit()
 		elif ch == '.':
 			sys.stdout.write(chr(data[dptr]))
 		elif ch == ',':
@@ -60,4 +70,6 @@ while cptr < len(program):
 			bracketDepth -= 1
 		elif ch == ']':
 			skip = False
+
+	#print data
 	cptr += 1
