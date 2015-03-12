@@ -1,14 +1,13 @@
 # Author: Ian Gibson
-# Last Change: 3/8/2015
+# Last Change: 3/11/2015
+
 # A basic Brainf*ck interpreter
 # No optimization, just implementing control characters
+# Adding error handling to deal with illegal operations
+
 # Tested using Python 2.7.6
 
 import sys
-
-class InputError(Exception):
-	def __init__(self, value):
-		self.value = value
 
 #read file into string
 infile = open(sys.argv[1], 'r')
